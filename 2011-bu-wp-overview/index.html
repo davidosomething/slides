@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+
+	<title>WordPress Plugins Course Overview (BU CDIA 11-2011)</title>
+	
+	<link rel="stylesheet" href="/core/deck.core.css">
+	<link rel="stylesheet" href="/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" id="style-theme-link" href="/themes/style/swiss.css">
+	<link rel="stylesheet" id="transition-theme-link" href="/themes/transition/horizontal-slide.css">
+	
+	<script src="/modernizr.custom.js"></script>
+</head><body class="deck-container">
+<!-- == BEGIN SLIDES ======================================================= -->
+
+
+<section class="slide">
+	<h1>WordPress Plugins Course Overview</h1>
+  <small>BU CDIA 11-2011</small>
+</section>
+
+<section class="slide">
+	<h2>What is a WordPress plugin?</h2>
+  <ul>
+    <li class="slide">Does everything your theme's functions.php file can do.</li>
+    <li class="slide">Separate non-theme specific code and create site specific functionality e.g. Post Types or disabling post revisions</li>
+    <li class="slide">Create custom widgets</li>
+    <li class="slide">Customize WordPress in general - login, dashboard, editing screens, etc.</li>
+    <li class="slide">Create new functionality - SQL and API interaction</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>APIs</h2>
+  <ul>
+    <li>Plugin</li>
+    <li>Widgets</li>
+    <li>Metadata</li>
+    <li>Shortcode</li>
+    <li>Options, Transients</li>
+    <li>Filesystem, File Header</li>
+    <li>Settings</li>
+    <li>HTTP</li>
+    <li>Rewrite</li>
+    <li>Database</li>
+    <li>Theme Modification</li>
+  </ul>
+</h2>
+</section>
+
+<section class="slide">
+	<h2>Don't reinvent the wheel.</h2>
+  <ul>
+    <li class="slide">Jetpack (twitter widget, sharing, url shortener, stats, typography + LaTex)</li>
+    <li class="slide">A million other twitter and sharing widgets exist</li>
+  </ul>
+  <p class="slide">Google "top wordpress plugins" and you'll get lists and lists.</p>
+</section>
+
+<section class="slide">
+  <h2>Default plugins</h2>
+  <ul>
+    <li class="slide">Akismet</li>
+    <li class="slide">Hello Dolly</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Recommended plugins</h2>
+  <ul>
+    <li class="slide">W3 Total Cache, WP Supercache</li>
+    <li class="slide">Google Analyticator</li>
+    <li class="slide">HeadSpace SEO, All-in-one SEO, Yoast SEO</li>
+    <li class="slide">Contact Forms 7 / Gravity Forms (premium)</li>
+    <li class="slide">WP-DBManager</li>
+    <li class="slide">Broken Link Checker</li>
+    <li class="slide">Regenerate Thumbnails</li>
+    <li class="slide">Per Post Scripts & Styles</li>
+    <li class="slide">Simple Tags</li>
+    <li class="slide">Yet Another Related Posts Plugin</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Installing plugins</h2>
+  <p><em>Typically</em></p>
+  <ol>
+    <li>Plugins</li>
+    <li>Add New</li>
+    <li>Search</li>
+    <li>One click install</li>
+    <li>Activate</li>
+  </ol>
+  <p><em>or</em></p>
+  <ol>
+    <li>Download plugin</li>
+    <li>Unzip</li>
+    <li>Upload to wp-content/plugins folder</li>
+    <li>Activate</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h1>Creating your own plugins</h1>  
+</section>
+
+<section class="slide">
+  <h2>Revisiting Hello Dolly</h2>
+  <pre><code>
+&lt;?php
+/*
+Plugin Name: Hello Dolly
+Plugin URI: http://wordpress.org/#
+Description: This is not just a plugin, it symbolizes the hope and enthusiasm of an entire generation summed up in two words sung most famously by Louis Armstrong: Hello, Dolly. When activated you will randomly see a lyric from &lt;cite&gt;Hello, Dolly&lt;/cite&gt; in the upper right of your admin screen on every page.
+Author: Matt Mullenweg
+Version: 1.5
+Author URI: http://ma.tt/
+*/
+</code></pre>
+</section>
+
+<section class="slide">
+  <h2>Revisiting Hello Dolly (2)</h2>
+  <pre><code>
+    $lyrics = &quot;Hello, Dolly...&quot;;
+    $lyrics = explode(&quot;\n&quot;, $lyrics);
+    $chosen = wptexturize( $lyrics[ mt_rand(0, count($lyrics) - 1) ] );
+
+    function hello_dolly() {
+      global $chosen;
+      echo &quot;&lt;p id='dolly'&gt;$chosen&lt;/p&gt;&quot;;
+    }
+    add_action('admin_footer', 'hello_dolly');
+  </code></pre>
+</section>
+
+<section class="slide">
+  <h2>Revisiting Hello Dolly (3)</h2>
+  <pre><code>
+    function dolly_css() {
+      echo &quot;
+      &lt;style type='text/css'&gt;
+      #dolly {
+        position: absolute;
+        ...
+      }
+      &lt;/style&gt;
+      &quot;;
+    }
+    add_action('admin_head', 'dolly_css');
+  ?&gt;  
+</code></pre>
+</section>
+
+<section class="slide">
+  <h2>Required parts of a plugin:</h2>
+  <p>Plugin comment preamble</p>  
+</section>
+
+<section class="slide">
+  <h2>Plugin best practices</h2>
+  <ul>
+    <li class="slide">Good, thorough preamble with description of functionality</li>
+    <li class="slide">Readme file, in markdown format with WordPress sections</li>
+    <li class="slide">Function prefixing</li>
+    <li class="slide"><del>Function prefixing</del> Class scoping (pseudo-namespacing) with PHP classes</li>
+    <li class="slide">Follow the <a href="http://codex.wordpress.org/WordPress_Coding_Standards" target="_blank">WordPress.org code standards</a></li>
+    <li class="slide">Version Control</li>
+    <li class="slide">Testing</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Coding best practices</h2>
+  <p>(besides WP.org standards)</p>
+  <ul>
+    <li class="slide">Which PHP version? WordPress version?</li>
+    <li class="slide">Object Oriented vs Functional</li>
+    <li class="slide">Code organization</li>
+    <li class="slide">File organization / includes</li>
+    <li class="slide">Commenting</li>
+    <li class="slide">PHP magic constants</li>
+    <li class="slide">WordPress constants and functions</li>
+    <li class="slide">Escaping, security</li>
+  </ul>  
+</section>
+
+<section class="slide">
+  <h1>Advanced WordPress Plugin coding</h1>
+</section>
+
+<section class="slide">
+  <h2>APIs</h2>
+  <ul>
+    <li>Plugin (hooks, actions, filters)</li>
+    <li>Widgets</li>
+    <li>Shortcode</li>
+    <li>Metadata (post meta, user meta, settings meta)</li>
+    <li>Options, Transients (easy key/value store)</li>
+    <li>Filesystem, File Header (also media sideloading)</li>
+    <li>Settings (creating menus)</li>
+    <li>HTTP (external API)</li>
+    <li>Rewrite (post types/taxonomies, rewrite analyzer)</li>
+    <li>Database (creating/uninstalling, security)</li>
+    <li>Theme Modification (background/header etc. appearance menu stuff)</li>
+  </ul>
+</h2>
+</section>
+  
+<section class="slide">
+  <h2>Hooks: Actions, Filters</h2>
+  <p>Activation, Deactivation, Uninstallation</p>
+  <p>Most commonly used...</p>
+</section>
+
+<section class="slide">
+  <h1>Releasing your plugin in the wild</h1>
+</section>
+
+<section class="slide">
+  <h2>Licensing</h2>
+  <ul>
+    <li class="slide">GPL</li>
+    <li class="slide">Dual License</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Where?</h2>
+  <ul>
+    <li class="slide">Your own site</li>
+    <li class="slide">WordPress.org</li>
+    <li class="slide">CodeCanyon.net / Envato Marketplace</li>
+    <li class="slide">WPPlugins.com</li>
+  </ul>
+</section>
+
+
+<!-- == DON'T TOUCH ======================================================== -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+<p class="deck-status"><span class="deck-status-current"></span>	/	<span class="deck-status-total"></span></p>
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+<script src="/jquery-1.7.min.js"></script>
+<script src="/core/deck.core.js"></script>
+<script src="/extensions/hash/deck.hash.js"></script>
+<script src="/extensions/goto/deck.goto.js"></script>
+<script src="/extensions/menu/deck.menu.js"></script>
+<script src="/extensions/status/deck.status.js"></script>
+<script src="/extensions/navigation/deck.navigation.js"></script>
+<script>$(function() { $.deck('.slide'); });</script>
+</body></html>
