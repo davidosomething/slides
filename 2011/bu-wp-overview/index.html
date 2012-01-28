@@ -99,9 +99,18 @@
     <li>One click install</li>
     <li>Activate</li>
   </ol>
+</section>
+
+<section class="slide">
+  <h2>Plugins Admin Screen</h2>
+  <img src="popular.png" />
+</section>
+
+<section class="slide">
+  <h2>Installing plugins (2)</h2>
   <p><em>or</em></p>
   <ol>
-    <li>Download plugin</li>
+    <li>Download plugin (e.g. from <a href="http://wordpress.org/extend/plugins/" target="_blank">http://wordpress.org/extend/plugins/</a>)</li>
     <li>Unzip</li>
     <li>Upload to wp-content/plugins folder</li>
     <li>Activate</li>
@@ -109,7 +118,7 @@
 </section>
 
 <section class="slide">
-  <h1>Creating your own plugins</h1>  
+  <h1>Creating your own plugins</h1>
 </section>
 
 <section class="slide">
@@ -162,18 +171,21 @@ Author URI: http://ma.tt/
 
 <section class="slide">
   <h2>Required parts of a plugin:</h2>
-  <p>Plugin comment preamble</p>  
+  <ol>
+    <li>Plugin file (unique filename.php) containing plugin comment preamble</li>
+  </ol>
+  <p class="slide">that's it.</p>
 </section>
 
 <section class="slide">
   <h2>Plugin best practices</h2>
   <ul>
     <li class="slide">Good, thorough preamble with description of functionality</li>
-    <li class="slide">Readme file, in markdown format with WordPress sections</li>
+    <li class="slide"><a href="http://wp.smashingmagazine.com/2011/11/23/improve-wordpress-plugins-readme-txt/" target="_blank">Readme file</a>, in markdown format with WordPress sections (<a href="http://designshack.net/articles/html/mastering-markdown-30-resources-apps-and-tutorials-to-get-you-started/" target="_blank">some helpful apps</a>), works on github too</li>
     <li class="slide">Function prefixing</li>
     <li class="slide"><del>Function prefixing</del> Class scoping (pseudo-namespacing) with PHP classes</li>
     <li class="slide">Follow the <a href="http://codex.wordpress.org/WordPress_Coding_Standards" target="_blank">WordPress.org code standards</a></li>
-    <li class="slide">Version Control</li>
+    <li class="slide">Version Control (SVN vs. git - <a href="http://mindsharestrategy.com/2011/how-to-publish-a-wordpress-plugin-git/" target="_blank">go git</a>)</li>
     <li class="slide">Testing</li>
   </ul>
 </section>
@@ -186,11 +198,21 @@ Author URI: http://ma.tt/
     <li class="slide">Object Oriented vs Functional</li>
     <li class="slide">Code organization</li>
     <li class="slide">File organization / includes</li>
-    <li class="slide">Commenting</li>
+    <li class="slide">Commenting (<a href="http://codex.wordpress.org/Inline_Documentation" target="_blank">PHPDoc and WordPress Standards</a> apply to plugins AND themes/functions.php)</li>
     <li class="slide">PHP magic constants</li>
     <li class="slide">WordPress constants and functions</li>
     <li class="slide">Escaping, security</li>
-  </ul>  
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Where to get help, more info</h2>
+  <ul>
+    <li><a href="http://codex.wordpress.org/Writing_a_Plugin" target="_blank">WordPress.org Codex</a></li>
+    <li><a href="http://wordpress.stackexchange.com/" target="_blank">WordPress on StackExchange</a></li>
+    <li><a href="http://net.tutsplus.com/category/tutorials/wordpress/" target="_blank">WordPress category on nettuts+</a></li>
+    <li><a href="http://wp.smashingmagazine.com/" target="_blank">Smashing Magazine's WordPress section</a></li>
+  </ul>
 </section>
 
 <section class="slide">
@@ -231,6 +253,8 @@ Author URI: http://ma.tt/
     <li class="slide">GPL</li>
     <li class="slide">Dual License</li>
   </ul>
+
+  <p><a href="http://wpblogger.com/carl-hancock-gpl-interview.php" target="_blank">The author of GravityForms on GPL</a></p>
 </section>
 
 <section class="slide">
