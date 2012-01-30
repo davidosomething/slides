@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+  <title>Day 2 - WordPress I</title>
+	<link rel="stylesheet" href="/core/deck.core.css">
+	<link rel="stylesheet" href="/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" id="style-theme-link" href="/themes/style/custom.css">
+	<link rel="stylesheet" id="transition-theme-link" href="/themes/transition/horizontal-slide.css">
+	
+	<script src="/modernizr.custom.js"></script>
+</head><body class="deck-container">
+<!-- == BEGIN SLIDES ======================================================= -->
+
+<section class="slide">
+  <h1>Wordpress I - Day 2</h1>
+</section>
+
+<section class="slide">
+  <h2>Schedule</h2>
+  <ol>
+    <li>Quiz</li>
+    <li>Writing valid HTML</li>
+    <li>Writing great CSS</li>
+    <li>Creating great PSDs</li>
+    <li>Installing WordPress (review)</li>
+    <li>Creating posts (review)</li>
+    <li>Backing up the WordPress database</li>
+    <li>Work on your theme</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Quiz</h2>
+  <h3>What does it stand for?</h3>
+  <ul>
+    <li class="slide"><span style="font-size: 3em;">HTML</span></li>
+    <li class="slide"><span style="font-size: 3em;">CSS</span></li>
+    <li class="slide"><span style="font-size: 3em;">MAMP</span></li>
+    <li class="slide"><span style="font-size: 3em;">CMS</span></li>
+  </ul>    
+</section>
+
+<section class="slide">
+  <h2>Find the mistakes.</h2>
+  
+  <pre><code>&lt;doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Where's Waldo?&lt;/title&gt;
+    &lt;meta author=&quot;David&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;This is a heading!&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;a src=&quot;back&quot;&gt;Go back&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;p&gt;This is content!&lt;p&gt;
+    &lt;list&gt;
+      &lt;li&gt;Item 1&lt;/li&gt;
+      &lt;li&gt;Item 2&lt;/li&gt;
+    &lt;/list&gt;
+    &lt;div&gt;Hello world!
+  &lt;/body&gt;
+  &lt;foot&gt;
+    &lt;h2&gt;This is a footer!&lt;/h2&gt;
+  &lt;/foot&gt;
+&lt;/html&gt;</code></pre>
+</section>
+
+<section class="slide">
+  <h2>What color is the &lt;p&gt;?</h2>
+  
+  <pre><code>&lt;style&gt;
+  p { color: #f00; }
+&lt;/style&gt;
+  
+&lt;p&gt;What color will I be?&lt;/p&gt;</code></pre>
+</section>
+
+<section class="slide">
+  <h2>What color is the &lt;p&gt;?</h2>
+  
+  <pre><code>&lt;style&gt;
+  p { color: #f00; }
+  .banana { color: #00f; }
+  #banana { color: yellow; }
+&lt;/style&gt;
+  
+&lt;p class="banana"&gt;What color will I be?&lt;/p&gt;</code></pre>
+</section>
+
+<section class="slide">
+  <h2>What color is the &lt;p&gt;?</h2>
+  
+  <pre><code>&lt;style&gt;
+  div { color: #00ff00; }
+  p { color: #f00; }
+  .goat { color: white; }
+  .banana { color: #00f; }
+  #banana { color: yellow; }
+&lt;/style&gt;
+  
+&lt;div&gt;
+  &lt;p id="goat" class="banana"&gt;What color will I be?&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section class="slide">
+  <h2>What color is the &lt;p&gt;?</h2>
+  
+  <pre><code>&lt;style&gt;
+  div { color: #00ff00; }
+  p { color: #f00; }
+  .banana { color: #00f; }
+  #goat { color: black; }
+&lt;/style&gt;
+  
+&lt;div&gt;
+  &lt;p id="goat" class="banana"&gt;What color will I be?&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section class="slide">
+  <h2>What color is the &lt;p&gt;?</h2>
+  
+  <pre><code>&lt;style&gt;
+  div { color: #00ff00 !important; }
+  p { color: #f00; }
+  #goat { color: black !important; }
+  div p { color: pink; }
+&lt;/style&gt;
+  
+&lt;div&gt;
+  &lt;p id="goat" class="banana"&gt;What color will I be?&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section class="slide">
+  <h2>Find the mistakes.</h2>
+  
+  <pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;This is a test&lt;/title&gt;
+  &lt;img src=&quot;images/header.jpg&quot; alt=&quot;Alternate text&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; /&gt;
+  &lt;h0&gt;Home&lt;/h0&gt;
+  &lt;textarea rows=&quot;4&quot; cols=&quot;4&quot;&gt;
+    This is my normal face: :|
+  &lt;/textarea&gt;
+  &lt;div&gt;
+    This is my sad face :&lt;
+    &lt;a id=&quot;happy&quot; class=&quot;yea&quot;&gt;
+      &amp; this is my happy face :)
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/body}
+&lt;/html&gt;</code></pre>
+</section>
+
+<section class="slide">
+  <h2>Back to WordPress review...</h2>
+  
+  <h3>What is the primary benefit of using WordPress (or any CMS)?</h3>
+  <p class="slide">Easy creation and editing of content.</p>
+</section>
+
+<section class="slide">
+  <h2>Back to WordPress review...</h2>
+
+  <h3>What kinds of sites can you not build with WordPress?</h3>
+  <ol>
+    <li>Blogs</li>
+    <li>Regular websites</li>
+    <li>Newspaper websites</li>
+    <li>Video sites like YouTube</li>
+    <li>Social Networks like Facebook and Twitter</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Back to WordPress review...</h2>
+
+  <h3>As a WordPress <strong>developer</strong>, what <strong>don't</strong> you need?</h3>
+  <ol>
+    <li>PHP</li>
+    <li>MySQL</li>
+    <li>Ruby on Rails</li>
+    <li>CSS</li>
+    <li>Apache</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Back to WordPress review...</h2>
+
+  <h3>As a WordPress <strong>user</strong>, which, if any, of these are unneccesary?</h3>
+  <ol>
+    <li>A computer</li>
+    <li>A twitter account</li>
+    <li>A domain name</li>
+    <li>A WordPress.com account</li>
+    <li>HTML skills</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Back to WordPress review...</h2>
+
+  <h3>Where do your HTML and CSS files go in a WordPress theme?</h3>
+  <ol>
+    <li>The wordpress plugins folder</li>
+    <li>The wordpress themes folder</li>
+    <li>The MAMP folder</li>
+    <li>Your desktop</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Back to WordPress review...</h2>
+
+  <h3>Name three requirements for a WordPress theme.</h3>
+  <ol class="slide">
+    <li>style.css file</li>
+    <li>Theme comment preamble in the style.css file</li>
+    <li>index.php file</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Back to WordPress review...</h2>
+
+  <h3>Which folder do you put websites in MAMP?</h3>
+  <ol>
+    <li>/MAMP</li>
+    <li>~/Sites</li>
+    <li>/Applications/MAMP/websites/docs</li>
+    <li>/Applications/MAMP/php/htdocs/</li>
+    <li>/Applications/MAMP/htdocs</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Back to WordPress review...</h2>
+
+  <h3>Which one of these is the standard Administration panel for WordPress?</h3>
+  <ol>
+    <li>http://mysiteurl.com/admin/</li>
+    <li>http://mysiteurl.net/wp-admin/</li>
+    <li>http://admin.wordpress.com/</li>
+    <li>/Applications/MAMP/admin/</li>
+    <li>phpMyAdmin</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Back to WordPress review...</h2>
+
+  <h3>Which URL is served by the apache server on your computer?</h3>
+  <ol>
+    <li>http://localhost:8888/</li>
+    <li>http://Applications/MAMP/</li>
+    <li>http://local/</li>
+    <li>ftp://MAMP/</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Back to WordPress review...</h2>
+
+  <h3>What is the default WordPress theme called?</h3>
+  <ol>
+    <li>twentyten</li>
+    <li>twentyeleven</li>
+    <li>twentytwelve</li>
+    <li>default</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Back to WordPress review...</h2>
+
+  <h3>Who created WordPress?</h3>
+  <ol>
+    <li>John Resig</li>
+    <li>Mark Zuckerberg</li>
+    <li>Drupal</li>
+    <li>Adobe</li>
+    <li>Automattic</li>
+  </ol>
+  
+  <h3 class="slide">Bonus: Who's the founder of Automattic?</h3>
+  <p class="slide">Matt Mullenweg</p>
+</section>
+
+<section class="slide">
+  <h1>Writing valid HTML</h1>
+</section>
+<section class="slide">
+  <h2>Rule #1</h2>
+  <pre>&lt;indent /&gt; &lt;consistently /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;indent /&gt; &lt;consistently /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;indent /&gt; &lt;consistently /&gt;
+&nbsp;&nbsp;&lt;indent /&gt; &lt;consistently /&gt;
+&nbsp;&nbsp;&nbsp;&lt;indent /&gt; &lt;consistently /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;indent /&gt; &lt;consistently /&gt;</pre>
+</section>
+<section class="slide">
+  <h2>Tools</h2>
+  <ul>
+    <li>Use a validator: <a href="http://validator.w3.org/">http://validator.w3.org/</a></li>
+    <li class="slide">Use the web developer toolbar for Firefox: <a href="https://addons.mozilla.org/en-US/firefox/addon/web-developer/">https://addons.mozilla.org/en-US/firefox/addon/web-developer/</a></li>
+  </ul>
+</section>
+<section class="slide">
+  <h2>Docs</h2>
+  <ul>
+    <li>Mark Pilgrim's guide to HTML5 <a href="http://diveintohtml5.info/">http://diveintohtml5.info/</a></li>
+    <li class="slide"><a href="http://w3fools.com/"><del>W3schools</del> w3fools</a></li>
+    <li class="slide"><a href="http://code.google.com/edu/submissions/html-css-javascript/#html">Google Code University</a></li>
+  </ul>
+</section>
+<section class="slide">
+  <h2>Divitis</h2>
+  <p>Use semantic elements instead of DIVs: &lt;header&gt;, &lt;footer&gt;, &lt;nav&gt;, &lt;h1&gt;, &lt;h2&gt;, &lt;blockquote&gt;, &lt;article&gt;, &lt;section&gt;</p>
+  
+  <h3>Why?</h3>
+  <p>It gives your page meaning, which some search engines use.</p>
+  <p>It makes sense to other developers.</p>
+  <p>It reduces page size (&lt;div id="header"&gt; is longer than &lt;header&gt;).</p>
+  <p>You don't need the &lt;div&gt; to style things, just target the thing inside the div (unless it's just text, then use a span or a paragraph because they make sense).</p>
+</section>
+<section class="slide">
+  <h2>HTML5 boilerplate</h2>
+  <p>Compilation of best practices by Paul Irish, Divya Manian, Mathias Bynens, Shichuan, Nicholas Gallagher, et al</p>
+  <p><a href="http://html5boilerplate.com/">HTML5 Boilerplate</a>
+</section>
+
+<section class="slide">
+  <h1>Writing great CSS</h1>
+</section>
+<section class="slide">
+  <h2>Rule #1</h2>
+  <pre>.indent { consistently: always !important; }
+&nbsp;&nbsp;&nbsp;&nbsp;#indent { consistently: always !important; }
+&nbsp;&nbsp;&nbsp;&nbsp;#indent { consistently: always !important; }
+&nbsp;&nbsp;#indent .consistently { }
+&nbsp;&nbsp;&nbsp;.indent.consistently { }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.indent { consistently: always !important; }</pre>
+</section>
+<section class="slide">
+  <h2>Best practices</h2>
+  <ul>
+    <li>Use a normalizer -- see HTML5boilerplate's CSS</li>
+    <li class="slide">Use semantic class names: "error" instead of "red", "sidebar" instead of "rightcolumn"</li>
+    <li class="slide">Use the shortest selector (<a href="http://code.google.com/speed/page-speed/docs/rendering.html">pagespeed</a>)</li>
+    <li class="slide">Learn to use <a href="http://getfirebug.com/">Firebug</a> / Inspector / Developer Tools</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h1>Creating great PSDs</h1>
+</section>
+<section class="slide">
+  <h2>Rule #1</h2>
+  <p style="margin: 100px; text-align: center; font-size: 5em;">NAME YOUR SHIT</p>
+</section>
+<section class="slide">
+  <h2>Best practices</h2>
+  <p>Send the designer this way, and refuse to work with anyone who does not follow these rules:</p>
+  <p><a href="http://photoshopetiquette.com/">The Photoshop Etiquette Manifesto for Web Designers</a></p>
+</section>
+
+<section class="slide">
+  <h1>Installing WordPress (review)</h1>
+</section>
+<section class="slide">
+  <h1>Creating posts (review)</h1>
+</section>
+<section class="slide">
+  <h1>Backing up the WordPress database</h1>
+</section>
+<section class="slide">
+  <h1>Work on your theme</h1>
+</section>
+
+
+
+<!-- == DON'T TOUCH ======================================================== -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+<p class="deck-status"><span class="deck-status-current"></span>	/	<span class="deck-status-total"></span></p>
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+<script src="/jquery-1.7.min.js"></script>
+<script src="/core/deck.core.js"></script>
+<script src="/extensions/hash/deck.hash.js"></script>
+<script src="/extensions/goto/deck.goto.js"></script>
+<script src="/extensions/menu/deck.menu.js"></script>
+<script src="/extensions/status/deck.status.js"></script>
+<script src="/extensions/navigation/deck.navigation.js"></script>
+<script>$(function() { $.deck('.slide'); });</script>
+</body></html>
