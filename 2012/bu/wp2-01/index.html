@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+  <title>Day 1 - WordPress II</title>
+	<link rel="stylesheet" href="/core/deck.core.css">
+	<link rel="stylesheet" href="/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" id="style-theme-link" href="/themes/style/custom.css">
+	<link rel="stylesheet" id="transition-theme-link" href="/themes/transition/horizontal-slide.css">
+	
+	<script src="/modernizr.custom.js"></script>
+</head><body class="deck-container">
+<!-- == BEGIN SLIDES ======================================================= -->
+
+<section class="slide">
+  <h1>Wordpress II - Day 1</h1>
+</section>
+
+<section class="slide">
+  <h2>Schedule</h2>
+  <ol>
+    <li>Course overview</li>
+    <li>Review of WordPress Requirements</li>
+    <li>Install WordPress</li>
+    <li>Vocabulary review</li>
+    <li>Child theming</li>
+    <li>Homework</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Class Info</h2>
+  <p>Dates: M,W 6:30pm - 9:45pm; Sat 9am - 5pm</p>
+  <p><strong>NO CLASS Saturday, Feb 18</strong></p>
+  <p><strong>NO CLASS Monday, Feb 20 (President's Day)</strong></p>
+  
+  <p><a href="http://slides.davidosomething.com/2012/">http://slides.davidosomething.com/2012/</a> - Slides</p>
+</section>
+
+<section class="slide">
+  <h2>Your instructor</h2>
+  <p>David O'Trakoun - <a href="http://www.davidosomething.com/">www.davidosomething.com</a></p>
+  <p>Email me: <a href="mailto:cdia@davidosomething.com" target="_blank">cdia@davidosomething.com</a></p>  
+</section>
+
+<section class="slide">
+  <h2>Course overview</h2>
+  <ul>
+    <li><a href="pdfs/">Official BU CDIA handouts</a></li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Review of WordPress Requirements</h2>
+  <p>You need:</p>
+  <ol>
+    <li>A server to store all the WordPress files.<br />
+      The "A" for Apache in MAMP provides this.</li>
+    <li>PHP on the server.<br />
+      That's the "P" in MAMP.</li>
+    <li>A database for WordPress to store blog posts and settings.<br />
+      The 2nd "M" for MySQL in MAMP provides this.</li>
+  <ol>
+</section>
+
+<section class="slide">
+  <h2>Install WordPress (files)</h2>
+  
+  <p>To install WordPress, start with setting up the files and folders.</p>
+  <ol>
+    <li class="slide"><a href="http://www.wordpress.org/" target="_blank">Download a clean copy of WordPress</a>.</li>
+    <li class="slide">Unzip it if it is zipped.</li>
+    <li class="slide">Rename the "wordpress" folder to whatever you want to call your site (e.g. "mysite").<br />
+        Only use lowercase letters</li>
+    <li class="slide">Copy it from the Downloads folder (Student/Downloads) to:<br />
+        /Applications/MAMP/htdocs ("the htdocs folder")</li>
+    <li class="slide">Start MAMP if it isn't running.</li>
+    <li class="slide">Go to your your site on localhost, e.g.<br />
+        http://localhost:8888/mysite</li>
+    <li class="slide">Follow the instructions, which ask you for a database.</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Install WordPress (database)</h2>
+  
+  <p>To create a database:</p>
+  <ol>
+    <li class="slide">Open up the MAMP start page:<br />
+        http://localhost:8888/MAMP</li>
+    <li class="slide">Go to phpMyAdmin</li>
+    <li class="slide">Go to the privileges section.</li>
+    <li class="slide">Add a new user.</li>
+    <li class="slide">Enter in some username and password. (Write down somewhere, noting that these are for the database!)</li>
+    <li class="slide">Use the dropdown to select "local" for the host.</li>
+    <li class="slide">Check the box that says "create a database with the same name"</li>
+    <li class="slide">Click "go" on the bottom of the page.</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Install WordPress (admin)</h2>
+  
+  <p>Now that you have a database, you can continue with the WordPress install</p>
+  <ol>
+    <li class="slide">Click "Let's Go" in the WordPress Installer.</li>
+    <li class="slide">Fill in the database info.</li>
+    <li class="slide">Run the install.</li>
+    <li class="slide">Enter in your WordPress info.</li>
+    <li class="slide">Don't forget to change your username to something other than "admin"</li>
+    <li class="slide">Take note of your WordPress username and password! It can be different from your database username and password.</li>
+  </ol>
+</section>
+
+<section class="slide">
+	<h2>Vocabulary review</h2>
+	<ul>
+		<li class="slide"><span style="font-weight: bold; background:lightblue; color:white;">&lt;span class="awesome"&gt;I'm awesome!&lt;/span&gt;</span> &mdash; This is an HTML element. It has tags, content, and other hidden properties.</li>
+		<li class="slide"><span style="font-weight: bold; background:lightblue; color:white;">&lt;span class="awesome"&gt;</span>I'm awesome!&lt;/span&gt; &mdash; This is an HTML start tag.</li>
+		<li class="slide">&lt;<span style="font-weight: bold; background:lightblue; color:white;">span</span> class="awesome"&gt;I'm awesome!&lt;/span&gt; &mdash; This is the tag's name.</li>
+		<li class="slide">&lt;span <span style="font-weight: bold; background:lightblue; color:white;">class</span>="awesome"&gt;I'm awesome!&lt;/span&gt; &mdash; This is an attribute.</li>
+		<li class="slide">&lt;span class="<span style="font-weight: bold; background:lightblue; color:white;">awesome</span>"&gt;I'm awesome!&lt;/span&gt; &mdash; This is the attribute's value.</li>
+		<li class="slide">&lt;span class="awesome"&gt;<span style="font-weight: bold; background:lightblue; color:white;">I'm awesome!</span>&lt;/span&gt; &mdash; This is the contents of the HTML element.</li>
+		<li class="slide">&lt;span class="awesome"&gt;I'm awesome!<span style="font-weight: bold; background:lightblue; color:white;">&lt;/span&gt;</span> &mdash; This is the end tag for the span element.</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Vocabulary review</h2>
+	<ul>
+		<li class="slide"><span style="font-weight: bold; background:lightblue; color:white;">nav a { text-decoration: none; color: blue; }</span> &mdash; This is a CSS rule.</li>
+		<li class="slide"><span style="font-weight: bold; background:lightblue; color:white;">nav a</span> { text-decoration: none; color: blue; } &mdash; This is the rule's selector.</li>
+		<li class="slide">nav a { <span style="font-weight: bold; background:lightblue; color:white;">text-decoration: none; color: blue;</span> } &mdash; These are the style declarations for the rule.</li>
+		<li class="slide">nav a { <span style="font-weight: bold; background:lightblue; color:white;">text-decoration:</span> none; color: blue; } &mdash; This is a style declaration's property.</li>
+		<li class="slide">nav a { text-decoration: <span style="font-weight: bold; background:lightblue; color:white;">none;</span> color: blue; } &mdash; This is that property's value.</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Vocabulary review</h2>
+	<ul>
+		<li class="slide"><span style="font-weight: bold; background:lightblue; color:white;">&lt;?php the_title(); ?&gt;</span> &mdash; This is a PHP block.</li>
+		<li class="slide"><span style="font-weight: bold; background:lightblue; color:white;">&lt;?php</span> the_title(); ?&gt; &mdash; This is a PHP start tag.</li>
+		<li class="slide">&lt;?php <span style="font-weight: bold; background:lightblue; color:white;">the_title();</span> ?&gt; &mdash; This is a function statement. It "calls" the function named "the_title".</li>
+		<li class="slide">&lt;?php the_title(); <span style="font-weight: bold; background:lightblue; color:white;">?&gt;</span> &mdash; This is a PHP end tag.</li>
+	</ul>
+</section>
+
+<section class="slide">
+  <h1>Child theming</h1>
+</section>
+
+<section class="slide">
+  <h2>What is it?</h2>
+  <p>It's a theme based off of another one.</p>
+  <p>They use the same files, but you can override parent files by adding different versions in the child.</p>
+  <p>This lets you build off of an existing theme without modifying the existing files.</p>
+  
+  <div class="slide">
+  <h3>Why use it?</h3>
+    <p>Already SEO optimized, has options panels, custom WP stuff.</p>
+    <p>If the parent updates its functions or CSS, you get all the updates.</p>
+    <p><a href="http://codex.wordpress.org/Child_Themes">Codex page</a></p>
+  </div>
+</section>
+
+<section class="slide">
+  <h2>Where to start?</h2>
+  <p>You can child theme off of ANY theme, even ones you made yourself.</p>
+  <p>Some nice, clean ones include:</p>
+  <ul>
+    <li><a href="http://themeshaper.com/thematic/">Thematic</a></li>
+    <li><a href="http://themehybrid.com/">Hybrid</a> &mdash premium theme</li>
+    <li><a href="http://wordpress.org/extend/themes/boilerplate">Boilerplate</a></li>
+    <li><a href="http://www.webdesignerdepot.com/2011/10/a-comparison-of-leading-wordpress-theme-frameworks/">A whole bunch more on Web Designer Depot</a></li>
+    <li><a href="http://www.wpmayor.com/polls/whats-your-favourite-wordpress-responsive-theme-framework/">and responsive ones on WP Mayor</a></li>
+  </ul>
+  
+  <p class="slide">And here's a tutorial on how to do it:<br />
+    <a href="http://themeshaper.com/2009/04/17/wordpress-child-theme-basics/">http://themeshaper.com/2009/04/17/wordpress-child-theme-basics/</a></p>
+</section>
+
+<section class="slide">
+  <h2>Homework</h2>
+  <ul>
+    <li>Read through the Isobar coding standards.</li>
+    <li>Clean up the code in your WordPress theme &mdash; fix all your indenting.</li>
+  </ul>
+  
+  <h3>Resources</h3>
+  <ul>
+    <li><a href="http://na.isobar.com/standards/">HTML coding best practices</a></li>
+    <li><a href="http://css-tricks.com/efficiently-rendering-css/">CSS best practices</a></li>
+    <li><a href="http://html5boilerplate.com/">HTML5boilerplate</a></li>
+    <li><a href="http://codex.wordpress.org/">WordPress Codex</a> - Official WordPress documentation</li>
+    <li><a href="http://wp.tutsplus.com/">wp tuts+</a> - Over 200 WordPress tutorials</li>
+    <li><a href="http://wordpress.stackexchange.com/">WordPress - Stack Exchange</a> - Search for answers and ask questions here</li>
+  </ul>
+</section>
+
+
+<!-- == DON'T TOUCH ======================================================== -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+<p class="deck-status"><span class="deck-status-current"></span>	/	<span class="deck-status-total"></span></p>
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+<script src="/jquery-1.7.min.js"></script>
+<script src="/core/deck.core.js"></script>
+<script src="/extensions/hash/deck.hash.js"></script>
+<script src="/extensions/goto/deck.goto.js"></script>
+<script src="/extensions/menu/deck.menu.js"></script>
+<script src="/extensions/status/deck.status.js"></script>
+<script src="/extensions/navigation/deck.navigation.js"></script>
+<script>$(function() { $.deck('.slide'); });</script>
+</body></html>

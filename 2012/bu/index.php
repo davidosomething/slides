@@ -1,4 +1,15 @@
-<?php function get_dirs($path = '.') {$dirs = array();foreach (new DirectoryIterator($path) as $file) {if ($file->isDir() && !$file->isDot()) {$dirs[] = $file->getFilename();}}return $dirs;} $dirs = get_dirs(); ?>
+<?php
+function get_dirs($path = '.') {
+  $dirs = array();
+  foreach (new DirectoryIterator($path) as $file) {
+    if ($file->isDir() && !$file->isDot()) {
+      $dirs[] = $file->getFilename();
+    }
+  }
+  rsort($dirs, SORT_STRING);
+  return $dirs;
+}
+$dirs = get_dirs(); ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
