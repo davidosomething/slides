@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+  <title>Day 2 - WordPress II</title>
+  <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/lib/reveal/css/reset.css">
+  <link rel="stylesheet" href="/lib/reveal/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/solarized_light.css"><!-- also vs.css -->
+</head><body><div id="reveal"><div class="slides">
+<!-- == BEGIN SLIDES ======================================================= -->
+
+<section>
+  <h1>Wordpress II</h1>
+  <h2>Day 2</h2>
+</section>
+
+<section>
+  <h2>Schedule</h2>
+  <ol>
+    <li>Review of yesterday</li>
+    <li>Continue theming</li>
+  </ol>
+</section>
+
+<section>
+  <section>
+    <h2>Review: style.css</h2>
+    <ul>
+      <li>Put in the theme preamble so WordPress can recognize the theme.</li>
+      <li>Then we grabbed <em>everything</em> from h5bp's style.css and put it in ours.</li>
+    </ul>
+    
+    <p class="fragment">down we go...</p>
+  </section>
+    
+  <section>
+    <h2>Review: index.php</h2>
+  
+<pre><code contenteditable
+>&lt;!doctype html&gt;
+&lt;!--[if lt IE 7]&gt; &lt;html class=&quot;no-js lt-ie9 lt-ie8 lt-ie7&quot; &lt;?php language_attributes(); ?&gt;&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7]&gt;    &lt;html class=&quot;no-js lt-ie9 lt-ie8&quot; &lt;?php language_attributes(); ?&gt;&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8]&gt;    &lt;html class=&quot;no-js lt-ie9&quot; &lt;?php language_attributes(); ?&gt;&gt; &lt;![endif]--&gt;
+&lt;!--[if gt IE 8]&gt;&lt;!--&gt; &lt;html class=&quot;no-js&quot; &lt;?php language_attributes(); ?&gt;&gt; &lt;!--&lt;![endif]--&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;&lt;?php bloginfo( 'charset' ); ?&gt;&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;
+  &lt;title&gt;&lt;?php
+  	wp_title( '|', true, 'right' ); // blog post title or page title with a | pipe if needed
+		bloginfo('name'); // actual site name
+		// e.g., Blog Post Title | MySite 
+	?&gt;&lt;/title&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;&lt;?php bloginfo('description'); ?&gt;&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;?php bloginfo( 'stylesheet_url' ); ?&gt;&quot;&gt;
+  &lt;?php wp_head(); ?&gt;
+&lt;/head&gt;
+</code></pre>
+  </section>
+
+    <section>
+    <h2>Review: index.php</h2>
+<pre><code contenteditable
+>&lt;!--[if lt IE 7]&gt; &lt;html class=&quot;no-js lt-ie9 lt-ie8 lt-ie7&quot; &lt;?php language_attributes(); ?&gt;&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7]&gt;    &lt;html class=&quot;no-js lt-ie9 lt-ie8&quot; &lt;?php language_attributes(); ?&gt;&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8]&gt;    &lt;html class=&quot;no-js lt-ie9&quot; &lt;?php language_attributes(); ?&gt;&gt; &lt;![endif]--&gt;
+&lt;!--[if gt IE 8]&gt;&lt;!--&gt; &lt;html class=&quot;no-js&quot; &lt;?php language_attributes(); ?&gt;&gt; &lt;!--&lt;![endif]--&gt;
+</code></pre>
+    <ul>
+      <li>We took these from HTML5 boilerplate. Around the html tags are IE conditional comments,
+so depending on the version of IE (or non-IE browser) you're using you get the appropriate tag.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Review: index.php</h2>
+  
+<pre><code contenteditable
+>  &lt;meta charset=&quot;&lt;?php bloginfo( 'charset' ); ?&gt;&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;
+</code></pre>
+  <ul>
+    <li>The character set: using the PHP function "bloginfo()" from WP.
+    Lets you change the encoding in WP, useful if blog has multiple languages.</li>
+    <li>The next line is for IE. Using IE you can pretend to be an older browser. This line tells IE to use the latest version or Chrome Frame.</li>
+  </ul>
+  </section>
+  
+  <section>
+    <h2>Review: index.php</h2>
+  
+<pre><code contenteditable
+>  &lt;title&gt;&lt;?php
+  	wp_title( '|', true, 'right' ); // blog post title or page title with a | pipe if needed
+		bloginfo('name'); // actual site name
+		// e.g., Blog Post Title | MySite 
+	?&gt;&lt;/title&gt;
+</code></pre>
+    <ul>
+      <li>Here we're using some more WP provided functions to set the page title. <code>wp_title</code> is the name of the post or page you're on, and <code>bloginfo('name')</code> is the name of your site.</li>
+    </ul>
+  </section>
+  
+  <section>
+    <h2>Review: index.php</h2>
+  
+<pre><code contenteditable
+>  &lt;meta name=&quot;description&quot; content=&quot;&lt;?php bloginfo('description'); ?&gt;&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+</code></pre>
+  <ul>
+    <li>Meta tag that is set using <code>bloginfo</code>. Edit the description in the admin, General Settings.</li>
+    <li>The viewport tells the browser to use the device width. On a phone, site will be fully visible instead of zoomed in to an area.</li>
+  </ul>
+  </section>
+
+  <section>
+    <h2>Review: index.php</h2>
+  
+<pre><code contenteditable
+>  &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;?php bloginfo( 'stylesheet_url' ); ?&gt;&quot;&gt;
+  &lt;?php wp_head(); ?&gt;
+&lt;/head&gt;
+</code></pre>
+    <ul>
+      <li>Stylesheet added using <code>bloginfo()</code>. Important for child theming. Child theme header.php file is inherited from the parent. You don't want to use a CSS file in the parent folder, but the child. Automatically picks the right CSS file.</li>    
+      <li><code>wp_head()</code> is where WordPress puts any extra stylesheets and JavaScript files it needs to.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Review: functions.php</h2>
+<pre><code contenteditable
+>  &lt;?php
+add_action('wp_enqueue_scripts', 'complex_scripts');
+function complex_scripts() {
+	wp_enqueue_script('modernizr',
+		get_template_directory_uri().'/js/libs/modernizr-2.5.2.min.js');
+}
+</code></pre>
+    <ul>
+      <li>This file only contains PHP so it starts with a PHP tag.</li>
+      <li>Tells WP to run our <code>complex_scripts</code> function when it adds its scripts.</li>
+      <li>Our function enqueues modernizr so WP and all plugins know about it.</li>
+      <li>Modernizr enables HTML5 elements in old browsers.</li>
+    </ul>
+  </section>
+  
+</section><!-- /review -->
+
+<section>
+  <h2>More theming</h2>
+  <h4>Add a header</h4>
+  <h4>Add a navigation section</h4>
+  <h4>Add a main section</h4>
+  <h4>Add a sidebar</h4>
+  <h4>Add a footer</h4>
+</section>
+
+<section>
+  <h2>Common HTML entities</h2>
+  <p>Must be lowercase! Don't forget the semi-colon.<br /></p>
+  <ul>
+    <li>&amp;amp; &mdash; &amp; &mdash; ampersand</li>
+    <li>&amp;lt; &mdash; &lt; &mdash; less than sign</li>
+    <li>&amp;gt; &mdash; &gt; &mdash; greater than sign</li>
+    <li>&amp;copy; &mdash; &copy; &mdash; copyright symbol</li>
+  </ul>
+  <p>&nbsp;<br />More here: <a href="http://entitycode.com/">http://entitycode.com/</a></p>
+  <p class="fragment">&nbsp;<br />and google...</p>
+</section>
+
+<section>
+  <section>
+    <h2>CSS normalizers and resets</h2>
+    <ul>
+      <li>A "css normalizer" makes all browsers look the same.</li>
+      <li>A "css reset" makes all elements look the same - h1s, h2s, ps, etc.</li>
+    </ul>
+  </section>
+  
+  <section>
+    <h2>Image replacement</h2>
+    <ul>
+      <li>Loads images as background images.</li>
+      <li>Background images load <em>after</em> HTML has loaded.</li>
+      <li>Means your site loads faster and is SEO friendly since there is text content where the image would be.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Media Queries</h2>
+    <ul>
+      <li>Are the basis for responsive design.</li>
+      <li>Allow you to target sizes and orientations (landscape/portrait).</li>
+      <li>Allow you to target the printer.</li>
+      <li>Mobile first or desktop first? Why?</li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <h2>More theming</h2>
+  <p>Similar to sidebars and widgets, there are menus and pages to drag and drop in WordPress.<br /> <br /> </p>
+  <h4>register_nav_menu( 'primary', 'Primary Menu' );</h4>
+  <p>Creates a menu that you can manage in WordPress.<br /> <br /> </p>
+  
+  <h4>wp_nav_menu( array('menu' => 'Primary Menu' ));</h4>
+  <p>Shows the Primary Menu as an unordered list.</p>
+</section>
+
+
+<!-- == DON'T TOUCH ======================================================== -->
+  </div><!-- /.slides -->
+
+  <!-- The navigational controls UI -->
+  <aside class="controls">
+    <a class="left" href="#">&#x25C4;</a>
+    <a class="right" href="#">&#x25BA;</a>
+    <a class="up" href="#">&#x25B2;</a>
+    <a class="down" href="#">&#x25BC;</a>
+  </aside>
+
+  <!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+  <div class="progress"><span></span></div>
+</div><!-- /#reveal -->
+<script src="/lib/reveal/js/reveal.js"></script>
+<script src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
+<script>
+Reveal.initialize({
+  controls: true,
+  progress: true,
+  history: true,
+  mouseWheel: true,
+  rollingLinks: true,
+  theme: 'default', // default/neon
+  transition: 'cube' // default/cube/page/concave/linear(2d)
+});
+hljs.initHighlightingOnLoad();
+</script>
+</body></html>
