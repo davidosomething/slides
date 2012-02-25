@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+  <title>Day 2 - WordPress II</title>
+  <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/lib/reveal/css/reset.css">
+  <link rel="stylesheet" href="/lib/reveal/css/custom-main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/solarized_light.css"><!-- also vs.css -->
+  <style>.small { font-size: 22px; line-height: 1.2; } .small li { padding-bottom: 10px; }</style>
+</head><body><div id="reveal"><div class="slides">
+<!-- == BEGIN SLIDES ======================================================= -->
+
+<section>
+  <h1>Wordpress II</h1>
+  <h2>Day 4</h2>
+</section>
+
+<section>
+  <h2>Schedule</h2>
+  <ol>
+    <li>Review</li>
+    <li>More on Post Types</li>
+    <li>Variations on The Loop</li>
+    <li>Lunch</li>
+    <li>Create a theme on your own</li>
+  </ol>
+</section>
+
+<section>
+  <section>
+    <h2>Review: PHP</h2>
+    <div>
+      This is a PHP block:
+      <pre><code contenteditable>&lt;?php /* put stuff inside here */ ?&gt;</code></pre>
+    </div>
+    <div class="fragment">
+      This is a PHP <em>function</em>:
+      <pre><code contenteditable>some_function();</code></pre>
+    </div>
+    <div class="fragment">
+      This is how to call a PHP function:
+      <pre><code contenteditable>&lt;?php some_function(); ?&gt;</code></pre>
+    </div>
+    <div class="fragment">
+      You can pass <em>arguments</em> or <em>parameters</em> to a function:
+      <pre><code contenteditable>some_function($arg, $param);
+bloginfo('name');
+</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>Review: Theme Requirements</h2>
+    <ul>
+      <li class="fragment">style.css</li>
+      <li class="fragment">Theme information in comment in style.css</li>
+      <li class="fragment">index.php</li>
+      <li class="fragment">Call <code>wp_head()</code> before <code>&lt;/head&gt;</code></li>
+      <li class="fragment">Call <code>wp_footer()</code> before <code>&lt;/body&gt;</code></li>
+    </ul>
+  </section>  
+
+  <section>
+    <h2>Review: The Loop</h2>
+    <p>"The Loop" goes through each of your posts and does stuff, like show the title.</p>
+    <pre><code contenteditable>&lt;?php
+if (have_posts()): // only start the loop if there are posts
+  while (have_posts()): // start looping through posts!
+    // do stuff in here, like:
+    ?&gt;
+    &lt;h1&gt;&lt;?php the_title(); ?&gt;&lt;/h1&gt;
+    &lt;?php
+    // and repeat as long as there are posts
+  endwhile;
+endif;
+?&gt;</code></pre> 
+  </section>  
+
+  <section>
+    <h2>Review: Includes</h2>
+    <ul><li>Includes make it easier to manage your templates by reducing the amount of code you repeat.</li>
+      <li>They basically copy the contents of one file and paste it into another.</li>
+      <li>The include functions are:</li></ul>
+    <pre><code contenteditable>&lt;?php
+get_header(); // includes stuff in header.php
+get_footer(); // footer.php
+get_sidebar(); // sidebar.php
+get_template_part('WHATEVER'); // includes stuff in WHATEVER.php
+?&gt;</code></pre> 
+  </section>  
+
+  <section>
+    <h2>Review: Comments</h2>
+    <p>You can add a comment form and<br />
+      show all comments for your posts.<br />
+      Just add this to The Loop:</p>
+    <pre><code contenteditable>&lt;?php comments_template(); ?&gt;</code></pre> 
+  </section>  
+
+  <section>
+    <h2>Review: Sidebars</h2>
+    <p>Sidebars are places to add widgets.</p>
+    <p>To use one, first you have to register it in functions.php:</p>
+    <pre><code contenteditable>&lt;?php
+register_sidebar();
+// OR
+// register_sidebars(4);
+?&gt;</code></pre> 
+    <p>Then add it into your theme:</p>
+    <pre><code contenteditable>&lt;ul&gt;&lt;?php dynamic_sidebar(); // or dynamic_sidebar(2) ?&gt;&lt;/ul&gt;</code></pre> 
+    <p>Don't forget to add widgets.</p>
+  </section>  
+
+  <section>
+    <h2>Review: Nav Menus</h2>
+    <p>Nav menus let you drag and drop links.</p>
+    <p>To use one, first you have to register it in functions.php:</p>
+    <pre><code contenteditable>&lt;?php register_nav_menu( 'primary', 'Primary Menu' ); ?&gt;</code></pre> 
+    <p>Then add it into your theme:</p>
+    <pre><code contenteditable>&lt;?php wp_nav_menu( array('menu' => 'Primary Menu') ); ?&gt;</code></pre> 
+    <p>Don't forget to create a menu, add links to it, and assign it to the right place.</p>
+  </section>  
+
+  <section>
+    <h2>Review: Thumbnails / Feature Images</h2>
+    <p>To use thumbnails, you have to turn the feature on in functions.php:</p>
+    <pre><code contenteditable>&lt;?php add_theme_support( 'post-thumbnails' ); ?&gt;</code></pre> 
+    <p>Then add it into your theme inside The Loop:</p>
+    <pre><code contenteditable>&lt;?php the_post_thumbnail(); // or the_post_thumbnail( array(WIDTH,HEIGHT) ); ?&gt;</code></pre> 
+    <p>Don't forget to set the thumbnails and click "Use as featured image" before saving the image.</p>
+  </section>  
+</section><!-- /review -->
+
+
+<section>
+  <h2>Post Types</h2>
+  <p>Using Custom Post Type UI, create a post type.</p>
+  <p>You can show a specific post type with this:</p>
+  <pre><code contenteditable>&lt;?php
+$custom_loop = new WP_Query(array(
+  'post_type'       =&gt; 'MYPOSTTYPE',
+  'posts_per_page'  =&gt; -1,          // or 1, 2...
+  'orderby'         =&gt; 'date',      // or title
+  'order'           =&gt; 'ASC'        // or DESC
+));
+
+if ($custom_loop-&gt;have_posts()):
+  while ($custom_loop-&gt;have_posts()): $custom_loop-&gt;the_post();
+    ?&gt;
+    &lt;h1&gt;&lt;?php the_title(); ?&gt;&lt;/h1&gt;
+    &lt;?php
+  endwhile;
+endif;
+?&gt;
+</code></pre>
+<p><a href="http://codex.wordpress.org/Class_Reference/WP_Query">More query options here</a></p>
+</section>
+
+<section>
+  <h1><br />any questions?</h1>
+</section>
+
+<section>
+  <h1><br />Go eat (1hr)</h1>
+</section>
+
+<section>
+  <h2>Make your own theme</h2>
+  <p>Nice wireframes:</p>
+  <ul class="small">
+    <li><a href="http://www.appliedanthrodesign.com/wp-content/uploads/2010/07/pp_wireframes1.jpg">http://www.appliedanthrodesign.com/wp-content/uploads/2010/07/pp_wireframes1.jpg</a></li>
+    <li><a href="http://alexandratong.com/how/wireframe.gif">http://alexandratong.com/how/wireframe.gif</a></li>
+    <li><a href="http://wegraphics.net/wp-content/uploads/2011/05/wireframe_big.jpg">http://wegraphics.net/wp-content/uploads/2011/05/wireframe_big.jpg</a></li>
+    <li><a href="http://creative-utk-edu.wpengine.netdna-cdn.com/files/2011/09/homepage-FINAL.jpg">http://creative-utk-edu.wpengine.netdna-cdn.com/files/2011/09/homepage-FINAL.jpg</a></li>
+    <li><a href="http://www.tonygeer.com/wordpress/wp-content/uploads/2009/10/wireframe1.jpg">http://www.tonygeer.com/wordpress/wp-content/uploads/2009/10/wireframe1.jpg</a></li>
+    <li><a href="http://www.bluelinemedia.co.uk/images/user/188_blog-wireframe-2-big.png">http://www.bluelinemedia.co.uk/images/user/188_blog-wireframe-2-big.png</a></li>
+    <li><a href="http://a.parsons.edu/~kopla138/blog/wp-content/uploads/2010/08/AK_site_mockup_home.jpg">http://a.parsons.edu/~kopla138/blog/wp-content/uploads/2010/08/AK_site_mockup_home.jpg</a></li>
+    <li><a href="http://blakeperdue.com/images/work/nm-wireframe-casestudies-big.jpg">http://blakeperdue.com/images/work/nm-wireframe-casestudies-big.jpg</a></li>
+  </ul>
+</section>
+
+<!-- == DON'T TOUCH ======================================================== -->
+  </div><!-- /.slides -->
+
+  <!-- The navigational controls UI -->
+  <aside class="controls">
+    <a class="left" href="#">&#x25C4;</a>
+    <a class="right" href="#">&#x25BA;</a>
+    <a class="up" href="#">&#x25B2;</a>
+    <a class="down" href="#">&#x25BC;</a>
+  </aside>
+
+  <!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+  <div class="progress"><span></span></div>
+</div><!-- /#reveal -->
+<script src="/lib/reveal/js/reveal.js"></script>
+<script src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
+<script>
+Reveal.initialize({
+  controls: true,
+  progress: true,
+  history: true,
+  mouseWheel: true,
+  rollingLinks: true,
+  theme: 'default', // default/neon
+  transition: 'cube' // default/cube/page/concave/linear(2d)
+});
+hljs.initHighlightingOnLoad();
+</script>
+</body></html>
