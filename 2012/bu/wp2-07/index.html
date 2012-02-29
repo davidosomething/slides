@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+  <title>Day 7 - WordPress II</title>
+  <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet">
+
+  <link rel="stylesheet" href="/lib/reveal/css/reset.css">
+  <link rel="stylesheet" href="/lib/reveal/css/custom-main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/solarized_light.css"><!-- also vs.css -->
+  <style>.small { font-size: 22px; line-height: 1.2; } .small li { padding-bottom: 10px; }</style>
+</head><body><div id="reveal"><div class="slides">
+<!-- == BEGIN SLIDES ======================================================= -->
+
+<section>
+  <h1>Wordpress II</h1>
+  <h2>Day 7</h2>
+</section>
+
+<section>
+  <h2>Schedule</h2>
+  <ol>
+    <li>Homework Check</li>
+    <li>PHP basics</li>
+    <li>Revisiting WordPress terminology</li>
+    <li>Custom Fields</li>
+    <li>The _s theme</li>
+  </ol>
+</section>
+
+<section>
+  <section>
+  <h2>What is PHP?</h2>
+    <ul>
+      <li class="fragment">It's a programming language.</li>
+      <li class="fragment">It stands for PHP Hypertext Preprocessor.</li>
+      <li class="fragment">It was originally made to generate websites.</li>
+      <li class="fragment">Useful for -- showing the date, accessing databases, doing math,
+      sending emails, etc.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How do you use it</h2>
+    <ul>
+      <li class="fragment">You need an HTTP server (like Apache) first.</li>
+      <li class="fragment">Then you need the server to be able to use PHP, by installing PHP itself.</li>
+      <li class="fragment">Finally, the server will only use PHP in a file with a ".php" extension,
+      like sidebar.php or index.php</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Review: PHP</h2>
+    <div>
+      This is a PHP block:
+      <pre><code>&lt;?php /* put stuff inside here */ ?&gt;</code></pre>
+    </div>
+    <div>
+      These are comments in PHP:
+      <pre><code>&lt;?php /* long
+comment */
+// oneline comment ?&gt;</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>Functions</h2>
+    <p>Functions are ways to reuse PHP code over and over.</p>
+    <div class="fragment">
+      This is a PHP <em>function</em>:
+      <pre><code>some_function();</code></pre>
+    </div>
+    <div class="fragment">
+      This is how to call a PHP function:
+      <pre><code>&lt;?php some_function(); ?&gt;</code></pre>
+    </div>
+    <div class="fragment">
+      You can pass <em>arguments</em> or <em>parameters</em> to a function:
+      <pre><code>some_function($arg, $param);
+bloginfo('name');
+</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>Functions</h2>
+    <p>Here's an example of a function you can reuse in your themes:</p>
+    <pre><code>&lt;?php function tell_truth() {
+  echo '&lt;p&gt;david is the best&lt;/p&gt;';
+} ?&gt;</code></pre>
+  </section>
+
+  <section>
+  <h2>Variables</h2>
+  <ul>
+    <li>"Variables" allow you to store information and use it or modify it later.</li>
+    <li class="fragment">Similar to algebra class, but you can also store words and "objects" and "arrays"</li>
+    <li class="fragment">Variables look like this:</li>
+  </ul>
+    <pre><code>&lt;?php
+$david = "greatest";
+$another = 20;
+$again = array(1,2,3,4,5);
+?&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>Arrays</h2>
+    <p>Arrays are lists of things. Sometimes the things have names.</p>
+    <pre><code>&lt;?php
+$something = array(1,2,3);
+$alphabet = array('a', 'b', 'c');
+$fruits_i_own = array('apple' => 3, 'orange' => 4);
+?&gt;</code></pre>
+  </section>
+  <section>
+    <h2>Arrays</h2>
+    <p>You can get a value out of an array like this:</p>
+    <pre><code>&lt;?php echo $fruits_i_own['apple']; // outputs 3
+echo $alphabet[25]; // outputs z, since counting starts at 0 for a
+?&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>Conditionals</h2>
+    <p>Conditionals are statements that determine whether or not to do things.</p>
+    <p>They work based on true/false (boolean) logic.</p>
+    <pre><code>&lt;?php
+if (1 == 1) echo '1 is equal to 1';
+if ($banana_color == 'yellow'):
+  echo 'bananas are yellow';
+else:
+  echo 'bananas are green';
+endif;
+if (get_the_title() == 'About') { ?&gt;
+  &lt;h2&gt;About&lt;/h2&gt;
+&lt;?php } ?&gt;</code></pre>
+  </section><!-- /review -->
+
+  <section>
+    <h2>Loops</h2>
+    <p>Loops do things until some condition is no longer met.</p>
+    <pre><code>&lt;?php $money_left = 100;
+while ($money_left > 0):
+  $money_left = $money_left - 1;
+endwhile; ?&gt;
+&lt;p&gt;You're broke now.&lt;/p&gt;</code></pre>
+    <p>There are "for", "foreach", and "do-while" loops, too, but you don't need them for WP.</p>
+    </section>
+</section>
+
+<section>
+  <section>
+    <h1>Revisiting WordPress Terminology</h1>
+  </section>
+
+  <section>
+  <h2>Themes</h2>
+  <ul>
+    <li>Your HTML, CSS, PHP, and images are all part of a WordPress Theme.</li>
+    <li class="fragment">Your theme is made up of templates -- the PHP+HTML files.</li>
+    <li class="fragment">Your templates are styled by CSS, specifically style.css</li>
+    <li class="fragment">Your theme can use special features from its functions.php file.</li>
+  </ul>
+  </section>
+
+  <section>
+    <h2>Templates</h2>
+    <ul>
+    <li>Templates are files such as index.php, sidebar.php, header.php</li>
+    <li class="fragment">Templates can include other templates using include tags such as get_header(), get_template_part('file');</li>
+    <li class="fragment">Templates can show posts using template tags such as the_title(); the_post_thumbnail();</li>
+    <li class="fragment">Templates have specific filenames like single.php, page.php, search.php</li>
+  </ul>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>Custom Fields</h1>
+    <p>take notes!</p>
+  </section>
+
+  <section>
+    <h2>What are they?</h2>
+    <ul>
+    <li>In a post you have a title, body, date, comments, and thumbnail.</li>
+    <li class="fragment">What if you want more?</li>
+    <li class="fragment">Such as: ISBN for books, Price for things you're selling, Address for some place?</li>
+    <li class="fragment">You could use the body, but then it's stuck to the body. e.g....</li>
+  </ul>
+  </section>
+
+  <section>
+    <h2>Custom fields are extra info</h2>
+    <ul>
+    <li class="fragment">We call it "meta data", it's data about the thing it's part of (the post).</li>
+    <li class="fragment">E.g. a Book about reading books is a meta-book.</li>
+    <li class="fragment">So for your canned foods post type, you could have any data about the canned food.</li>
+    <li class="fragment">E.g. expiration date</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How do you add meta data?</h2>
+    <ul>
+    <li class="fragment">Use the Screen Options dropdown to show the box if it's not available.</li>
+    <li class="fragment">Enter in a key. Keys are the thing you're defining like "expiration_date".</li>
+    <li class="fragment">Enter in a value. This would be the actual date.</li>
+  </ul>
+  </section>
+
+  <section>
+    <h2>How do you show meta data?</h2>
+    <p>In your loop, you ask WordPress to get it:</p>
+    <pre><code>while (have_posts(): the_post(); $expiration_date = get_post_meta($post->ID, 'expiration_date', true);
+      the_title(); echo $expiration_date;
+    </code></pre>
+  </section>
+
+  <section>
+    <h2>For now...</h2>
+    <p>Never have two custom values with the same key.<br />
+    After you learn more PHP you can dive into it.<br />
+    But for now, keep it simple.</p>
+  </section>
+
+  <section>
+    <h2>Exercises</h2>
+    <ol>
+      <li>Make a function that shows the expiration date.</li>
+      <li class="fragment">Add a calories custom field and make another function that shows calories.</li>
+      <li class="fragment">Make a function that shows what percent of a 2000 calorie diet that is.</li>
+      <li class="fragment">Show the title in RED if it is greater than 10%.</li>
+    </ol>
+  </section>
+</section>
+
+<section>
+  <h1>The _s theme</h1>
+  <p>or <em>I didn't think we'd make it this far<br />so now I'm winging it.</em></p>
+  <p><br /><a href="https://github.com/Automattic/_s">https://github.com/Automattic/_s</a></p>
+</section>
+
+
+<!-- == DON'T TOUCH ======================================================== -->
+  </div><!-- /.slides -->
+
+  <!-- The navigational controls UI -->
+  <aside class="controls">
+    <a class="left" href="#">&#x25C4;</a>
+    <a class="right" href="#">&#x25BA;</a>
+    <a class="up" href="#">&#x25B2;</a>
+    <a class="down" href="#">&#x25BC;</a>
+  </aside>
+
+  <!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+  <div class="progress"><span></span></div>
+</div><!-- /#reveal -->
+<script src="/lib/reveal/js/reveal.js"></script>
+<script src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
+<script>
+Reveal.initialize({
+  controls: true,
+  progress: true,
+  history: true,
+  mouseWheel: true,
+  rollingLinks: true,
+  theme: 'default', // default/neon
+  transition: 'cube' // default/cube/page/concave/linear(2d)
+});
+hljs.initHighlightingOnLoad();
+</script>
+</body></html>
